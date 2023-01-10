@@ -52,7 +52,7 @@
       event.preventDefault();
       event.stopPropagation();
       document.removeEventListener("fhirConnection", FetchFhirPatient, false );
-      EunoChains.fhir.client.request(`Patient/${EunoChains.fhir.client.patient.id}`)
+      EunoChains.fhir.client.request(`Patient?_id=${EunoChains.fhir.client.patient.id}`)
       .then((data) => {
         EunoChains.fhir.Patient.push(data);
         console.log("FetchFhirPatient Successful", JSON.stringify(data));
