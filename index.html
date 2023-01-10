@@ -1,128 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>EunoChains CDS</title>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta charset="utf-8">
-    <meta http-equiv='Content-Type' content='text/html; charset=utf-8' />
-    
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <meta charset="UTF-8" />
+    <title>CDS-Cluster-Lite</title>
     <script src="https://cdn.jsdelivr.net/npm/fhirclient/build/fhir-client.js"></script>
-    <style>
-      body, html {
-        font-family: Arial, Helvetica, sans-serif;
-        width: 100%;
-        height: 100%;
-        margin: 0;
-        padding: 0;
-        filter: brightness(100%);
-      }
-      .eunochains_page {
-        position: absolute;
-        top:0;
-        width: 100%;
-        height: 100%;
-        margin: 0;
-        padding: 0;
-        background-color: lavenderblush;
-        color: black;
-      }
-      .eunochains_header {
-        position: absolute;
-        top:0;
-        width: 100%;
-        height: 60px;
-        line-height: 60px;
-        margin: 0;
-        padding: 12px;
-        background-color: #8B8E84;
-        color: white;
-        text-align: center;
-      }
-      .eunochains_summary {
-        position: absolute;
-        top:60px;
-        width: 100%;
-        height: 150px;
-        margin: 0;
-        padding: 8px;
-        background-color: whitesmoke;
-        color: black;
-        text-align: left;
-      }
-      .eunochains_detail {
-        position: absolute;
-        top:210px;
-        width: 100%;
-        height: calc(100% - 240px);
-        margin: 0;
-        padding: 0;
-        background-color: aliceblue;
-        color: black;
-        text-align: center;
-      }
-      .eunochains_table {
-        margin: 12px 16px 12px 16px;
-        background-color: lavenderblush;
-        width: calc(100% - 32px);
-        color: black;
-      }
-      .eunochains_table_header {
-        background-color: maroon;
-        color: white;
-      }
-      .eunochains_footer {
-        position: absolute;
-        bottom:0;
-        left:0;
-        right: 0;
-        width: 100%;
-        height: 30px;
-        line-height: 30px;
-        margin: 0;
-        padding: 0;
-        background-color: black;
-        color: white;
-        text-align: center;
-      }
-    </style>
+      
   </head>
   <body id="Body">
   </body>
-  <script id="EunoChains_Test">
-    let ctx = {};
-    ctx.ec = [];
-    ctx.final = "false";
-    ctx.patient = {};
-    ctx.patient.name = "NoName";
-    ctx.patient.id = "NoId";
-    ctx.data = {}
-    ctx.data.patient = [];
-    ctx.data.observations = [];
-    ctx.data.consitions = [];
-    document.addEventListener("DOMContentLoaded", CreateContext, false );
-    async function CreateContext(event) {
+  <script>
+    document.addEventListener("DOMContentLoaded", InitializeApplication, false );
+    
+    let client = undefined;
+    let applicationInitializedEvent    = new Event("applicationinitialized");
+    document.addEventListener("applicationinitialized", StartApplication, false );
+    
+    
+    async function InitializeApplication(event) {
       event.preventDefault();
       event.stopPropagation();
-      document.removeEventListener("DOMContentLoaded", CreateContext, false );
-      let element = document.getElementById("Body");
-      FHIR.oauth2.ready().then(function(client) {
-        client.patient.read().then(
-          function(pt) {
-            let str = JSON.stringify(pt, null, 2);
-            element.innerText = str;
-          },
-          function(error) {
-              let str = JSON.stringify(error.stack, null, 2);
-              element.innerText = str;
-          }
-        );
-      });
+      document.removeEventListener("DOMContentLoaded", InitializeApplication, false );
+      client = await FHIR.oauth2.ready();
+      if(!client) {
+        console.log("Error: No Client");
+        return;
+      }
+      document.dispatchEvent(applicationInitializedEvent);
+      return;
     }
+    async function StartApplication(event) {
+      event.preventDefault();
+      event.stopPropagation();
+      document.removeEventListener("applicationinitialized", StartApplication, false );
+      let info = await client.request(`Patient/${client.patient.id}`);
+      if(!info) {
+        console.log("Error: No Patient Data");
+        return;
+      }
+      let element = document.getElementById("Body");
+      element.innerText = JSON.stringify(info);
+      return;
+    }
+
   </script>
 </html>
-
-  
