@@ -21,7 +21,7 @@
       event.stopPropagation();
       document.removeEventListener("DOMContentLoaded", InitializeApplication, false );
       FHIR.oauth2.ready()
-      .then(client => client.request("Patient"))
+      .then(client => client.request(`Patient/${client.patient.id}`))
       .then(console.log)
       .catch(console.error);
       /*
