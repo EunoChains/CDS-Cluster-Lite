@@ -20,10 +20,11 @@
       event.preventDefault();
       event.stopPropagation();
       document.removeEventListener("DOMContentLoaded", InitializeApplication, false );
+      console.log("Here 0");
       FHIR.oauth2.ready()
-      .then(client => client.request(`Patient/${client.patient.id}`))
-      .then(console.log)
-      .catch(console.error);
+      .then(client => {console.log("Here 1"); client.request(`Patient/${client.patient.id}`)})
+      .then(data => {console.log("Here 2"); console.log(data);})
+      .catch(err => {console.log("Here 3"); console.error(err)});
       /*
       client = await FHIR.oauth2.ready();
       if(!client) {
