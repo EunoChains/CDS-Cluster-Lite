@@ -9,48 +9,97 @@
   <body id="Body">
   </body>
   <script>
-    document.addEventListener("DOMContentLoaded", InitializeApplication, false );
+    document.addEventListener("DOMContentLoaded", SetupFhirConnection, false );
     
-    let G_Client = undefined;
-    let applicationInitializedEvent    = new Event("applicationinitialized");
-    document.addEventListener("applicationinitialized", StartApplication, false );
+    let EunoChains = {};
+    EunoChains.fhir = {};
+    EunoChains.fhir.client = undefined;
+    EunoChains.fhir.Patient = [];
+    EunoChains.fhir.Condition = [];
+    EunoChains.fhir.Observation = [];
+    EunoChains.fhir.AllergyIntolerance = [];
+    EunoChains.fhir.Procedure = [];
+    EunoChains.fhir.MedicationStatement = [];
+    EunoChains.ec = {};
+    EunoChains.ec.results = [];
+    EunoChains.artifact = {};
     
     
-    function InitializeApplication(event) {
+    let fhirConnectionEvent    = new Event("fhirConnection");
+    document.addEventListener("fhirConnection", FetchFhirPatient, false );
+    let fhirPatientEvent    = new Event("fhirPatient");
+    document.addEventListener("fhirPatient", FetchFhirCondition, false );
+    let fhirConditionEvent    = new Event("fhirCondition");
+    document.addEventListener("fhirCondition", FetchFhirObservation, false );
+    let fhirObservationEvent    = new Event("fhirObservation");
+    document.addEventListener("fhirObservation", StartApplication, false );
+    
+    function SetupFhirConnection(event) {
       event.preventDefault();
       event.stopPropagation();
-      document.removeEventListener("DOMContentLoaded", InitializeApplication, false );
-      console.log("Here 0");
-      FHIR.oauth2.ready()
-      //.then(client => {console.log("Here 1"); client.request(`Patient/${client.patient.id}`)})
-      //.then(data => {console.log("Here 2"); console.log(data);})
-      .then(client => console.log(JSON.stringify(client.patient)))
-      .catch(err => {console.log("Here 3"); console.error(err)});
-      /*
-      client = await FHIR.oauth2.ready();
-      if(!client) {
-        console.log("Error: No Client");
-        return;
-      }
-      document.dispatchEvent(applicationInitializedEvent);
-      */
-      return;
+      document.removeEventListener("DOMContentLoaded", SetupFhirConnection, false );
+      FHIR.oauth2.ready() 
+      .then((client) => {
+        EunoChains.fhir.client = client;
+        console.log("SetupFhirConnection Successful", JSON.stringify(client.patient));
+        document.dispatchEvent(fhirConnectionEvent);
+      })
+      .catch((err) => {
+        console.error("Error: SetupFhirConnection", err);
+      });
     }
+    function FetchFhirPatient(event) {
+      event.preventDefault();
+      event.stopPropagation();
+      document.removeEventListener("fhirConnection", FetchFhirPatient, false );
+      EunoChains.fhir.client.request(`Patient/${EunoChains.fhir.client.patient.id}`)
+      .then((data) => {
+        EunoChains.fhir.Patient.push(data);
+        console.log("FetchFhirPatient Successful", JSON.stringify(data));
+        document.dispatchEvent(fhirPatientEvent);
+      })
+      .catch((err) => {
+        console.error("Error: FetchFhirPatient", err);
+      });
+    }
+    function FetchFhirCondition(event) {
+      event.preventDefault();
+      event.stopPropagation();
+      document.removeEventListener("fhirPatient", FetchFhirCondition, false );
+      EunoChains.fhir.client.request(`Condition?patient=${EunoChains.fhir.client.patient.id}`)
+      .then((data) => {
+        EunoChains.fhir.Condition.push(data);
+        console.log("FetchFhirCondition Successful", JSON.stringify(data));
+        document.dispatchEvent(fhirConditionEvent);
+      })
+      .catch((err) => {
+        console.error("Error: FetchFhirCondition", err);
+      });
+    }
+    function FetchFhirObservation(event) {
+      event.preventDefault();
+      event.stopPropagation();
+      document.removeEventListener("fhirCondition", FetchFhirObservation, false );
+      EunoChains.fhir.client.request(`Observation?patient=${EunoChains.fhir.client.patient.id}`)
+      .then((data) => {
+        EunoChains.fhir.Observation.push(data);
+        console.log("FetchFhirObservation Successful", JSON.stringify(data));
+        document.dispatchEvent(fhirObservationEvent);
+      })
+      .catch((err) => {
+        console.error("Error: FetchFhirObservation", err);
+      });
+    }
+    
     function StartApplication(event) {
       event.preventDefault();
       event.stopPropagation();
-      document.removeEventListener("applicationinitialized", StartApplication, false );
-      /*
-      let info = await client.request(`Patient/${client.patient.id}`);
-      if(!info) {
-        console.log("Error: No Patient Data");
-        return;
-      }
-      let element = document.getElementById("Body");
-      element.innerText = JSON.stringify(info);
+      document.removeEventListener("fhirObservation", StartApplication, false );
+      console.log("StartApplication Successful");
+      
       return;
-      */
     }
+    
 
   </script>
 </html>
