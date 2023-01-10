@@ -11,7 +11,7 @@
   <script>
     document.addEventListener("DOMContentLoaded", InitializeApplication, false );
     
-    let client = undefined;
+    let G_Client = undefined;
     let applicationInitializedEvent    = new Event("applicationinitialized");
     document.addEventListener("applicationinitialized", StartApplication, false );
     
@@ -20,12 +20,18 @@
       event.preventDefault();
       event.stopPropagation();
       document.removeEventListener("DOMContentLoaded", InitializeApplication, false );
+      FHIR.oauth2.ready()
+      .then(client => client.request("Patient"))
+      .then(console.log)
+      .catch(console.error);
+      /*
       client = await FHIR.oauth2.ready();
       if(!client) {
         console.log("Error: No Client");
         return;
       }
       document.dispatchEvent(applicationInitializedEvent);
+      */
       return;
     }
     async function StartApplication(event) {
