@@ -16,7 +16,7 @@
     document.addEventListener("applicationinitialized", StartApplication, false );
     
     
-    async function InitializeApplication(event) {
+    function InitializeApplication(event) {
       event.preventDefault();
       event.stopPropagation();
       document.removeEventListener("DOMContentLoaded", InitializeApplication, false );
@@ -34,10 +34,11 @@
       */
       return;
     }
-    async function StartApplication(event) {
+    function StartApplication(event) {
       event.preventDefault();
       event.stopPropagation();
       document.removeEventListener("applicationinitialized", StartApplication, false );
+      /*
       let info = await client.request(`Patient/${client.patient.id}`);
       if(!info) {
         console.log("Error: No Patient Data");
@@ -46,6 +47,7 @@
       let element = document.getElementById("Body");
       element.innerText = JSON.stringify(info);
       return;
+      */
     }
 
   </script>
