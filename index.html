@@ -63,7 +63,7 @@
         document.dispatchEvent(fhirPatientEvent);
       })
       .catch((err) => {
-        console.error("Error: FetchFhirPatient", err);
+        console.error("Error: FetchFhirPatient");
       });
     }
     function FetchFhirCondition(event) {
@@ -77,7 +77,7 @@
         document.dispatchEvent(fhirConditionEvent);
       })
       .catch((err) => {
-        console.error("Error: FetchFhirCondition", err);
+        console.error("Error: FetchFhirCondition");
       });
     }
     function FetchFhirObservation(event) {
@@ -91,7 +91,7 @@
         document.dispatchEvent(fhirObservationEvent);
       })
       .catch((err) => {
-        console.error("Error: FetchFhirObservation", err);
+        console.error("Error: FetchFhirObservation");
       });
     }
     
