@@ -509,6 +509,7 @@
         console.error("Error: FetchFhirCondition");
         ConsolePrint("FetchFhirCondition is NOT Successful...");
         StatusPrint("FetchFhirCondition is NOT Successful...");
+        document.dispatchEvent(fhirConditionEvent);
       });
     }
     function FetchFhirObservation(event) {
@@ -530,6 +531,7 @@
         console.error("Error: FetchFhirObservation");
         ConsolePrint("FetchFhirObservation is NOT Successful...");
         StatusPrint("FetchFhirObservation is NOT Successful...");
+        document.dispatchEvent(fhirObservationEvent);
       });
     }
     
