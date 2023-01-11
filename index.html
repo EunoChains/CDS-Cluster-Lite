@@ -6,25 +6,387 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     
     <title>CDS-Cluster-Lite</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/fhirclient/build/fhir-client.js"></script>
+    
+    <style>
+      body, html {
+        font-family: Arial, Helvetica, sans-serif;
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        filter: brightness(100%);
+      }
+      .eunochains-page {
+        position: absolute;
+        top:0;
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        background-color: lavenderblush;
+        color: black;
+      }
+      .eunochains-title {
+        position: absolute;
+        top:0;
+        width: 100%;
+        height: 60px;
+        line-height: 60px;
+        margin: 0;
+        padding: 12px;
+        background-color: #8B8E84;
+        background-color: black;
+        color: white;
+        text-align: center;
+      }
+      .eunochains-subtitle {
+        position: absolute;
+        top:60px;
+        width: 100%;
+        height: 140px;
+        margin: auto;
+        padding: 8px;
+        background-color: whitesmoke;
+        color: #003030;
+        text-align: left;
+        line-height: normal;
+        border: 1px solid grey;
+        border-radius: 5px;
+      }
+      .eunochains-cds {
+        position: absolute;
+        top:100px;
+        width: 100%;
+        height: 80px;
+        margin: 0;
+        padding: 0;
+        background-color: whitesmoke;
+        color: black;
+        text-align: center;
+        line-height: normal;
+      }
+      .eunochains-cds__benefit {
+        height: 100%;
+        color: black;
+        text-align: left;
+        border: 1px solid grey;
+        border-radius: 5px;
+        
+      }
+      .eunochains-cds__harm {
+        height: 100%;
+        color: #990000;
+        text-align: left;
+        border: 1px solid   #990000;
+        border-radius: 5px;
+      }
+      .eunochains-content {
+        position: absolute;
+        top: 200px;
+        width: 100%;
+        height: calc(100% - 230px);
+        margin: 0;
+        padding: 0;
+        background-color: aliceblue;
+        background-color: whitesmoke;
+        color: black;
+        text-align: center;
+      }
+      .eunochains-content__tabs {
+        border: 2px solid   blue;
+        border-radius: 10px;
+      }
+      .eunochains-table {
+        margin: 0;
+        padding:0;
+        background-color: whitesmoke;
+        width: 100%;
+        height:100%;
+        overflow-y: auto;
+        color: black;
+        line-height: normal;
+      }
+      .eunochains-table__header {
+        background-color: maroon;
+        color: white;
+        font-weight: normal;
+      }
+      .eunochains-table__body {
+        color: black;
+        font-weight: normal;
+      }
+      .eunochains-footer {
+      position: absolute;
+      bottom:0;
+      left:0;
+      right: 0;
+      width: 100%;
+      height: 30px;
+      line-height: 30px;
+      margin: 0;
+      padding: 0;
+      background-color: black;
+      color: white;
+      text-align: left;
+    }
+    </style>
+    
       
   </head>
   <body id="Body">
-    <div id="Console">
+    <div id="Page" class="eunochains-page container-fluid">
+
+      <div id="Title" class="eunochains-title row">
+        <h3>Bariatric Surgery: Clinical Decision Support</h3>
+      </div>
+
+
+
+      <div id="SubTitle" class="eunochains-subtitle row">
+        <div class="card">
+          <div id="CDSStatement" class="card-header h5" style="color:maroon;">
+            CDS Statement
+          </div>
+          <div class="card-body">
+            <h5 class="card-title">Bariatric Surgery Referral based on NCT00641251 Clinical Trials knowledge</h5>
+            <p class="card-text text-dark">
+              <small>Study shows that this patient when treated with Roux-en-Y gastric bypass, along with "Intensive Lifestyle and Medical Management", will have 19% better chance to achieve ADA "triple end point" of  A1c less than 7.0%, low-density lipoprotein cholesterol less than 100 mg/dL, and systolic blood pressure less than 130 mm Hg at 5 years.</small>
+            </p>
+            
+          </div>
+        </div>
+<!--
+        <h5 id="SubTitle_Text"> Nancy Smart does MATCH the Population Characteristics of Clinical Trial id number NCT00641251</h5>
+        <small style="color:black">Study shows that this patient when treated with Roux-en-Y gastric bypass, along with "Intensive Lifestyle and Medical Management", will have 19% better chance to achieve ADA "triple end point" of  A1c less than 7.0%, low-density lipoprotein cholesterol less than 100 mg/dL, and systolic blood pressure less than 130 mm Hg at 5 years.</small>
+        <small style="color:#990000">Gastric bypass has more serious adverse events than did the lifestyle–medical management intervention, 66 events vs 38 events, most frequently gastrointestinal events and surgical complications such as strictures, small bowel obstructions, and leaks. Gastric bypass had more parathyroid hormone elevation but no difference in B12 deficiency.</small>
+-->
+      </div>
+
+<!-- 
+      <div id="CDS" class="eunochains-cds row">
+        <div id="CDS_Benefit" class="eunochains-cds__benefit col-sm-6">
+          <p><small>Study shows that this patient when treated with Roux-en-Y gastric bypass, along with "Intensive Lifestyle and Medical Management", will have 19% better chance to achieve ADA "triple end point" of  A1c less than 7.0%, low-density lipoprotein cholesterol less than 100 mg/dL, and systolic blood pressure less than 130 mm Hg at 5 years.</small></p>
+        </div>
+        <div id="CDS_Harm" class="eunochains-cds__harm col-sm-6">
+          <p><small>Gastric bypass has more serious adverse events than did the lifestyle–medical management intervention, 66 events vs 38 events, most frequently gastrointestinal events and surgical complications such as strictures, small bowel obstructions, and leaks. Gastric bypass had more parathyroid hormone elevation but no difference in B12 deficiency.</small></p>
+        </div>
+      </div>
+-->
+      <div id="Content" class="eunochains-content row">
+        <ul class="nav nav-tabs nav-justified" role="tablist">
+          <li class="nav-item">
+            <a class="nav-link active" data-bs-toggle="pill" href="#detail"><h5>Detail</h5></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="pill" href="#evaluation"><h5>Evaluation</h5></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="pill" href="#knowledge"><h5>Study</h5></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="pill" href="#source"><h5>Source</h5></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-info" data-bs-toggle="pill" href="#developer"><h5>Eunomians !!</h5></a>
+          </li>
+        </ul>
+      
+        <!-- Tab panes -->
+        <div class="tab-content">
+          <div id="detail" class="container tab-pane active"><br>
+            <h3>Detail Information</h3>
+          </div>
+          <div id="evaluation" class="container tab-pane fade"><br>
+            <h5>Patient Characteristic Evaluation</h5>
+            <table class="table table-sm table-bordered text-start text-secondary eunochains-table">
+              <thead class="eunochains-table__header font-weight-normal">
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Description of Candidate Eligibility Criterion</th>
+                  <th scope="col">Match</th>
+                  <th scope="col">Inclusion</th>
+                  <th scope="col">Result</th>
+                </tr>
+              </thead>
+              <tbody class="eunochains-table__body">
+                <tr>
+                  <th scope="row">1</th>
+                  <td>Age 30 to 67 years at eligibility visit</td>
+                  <td id="Rule1Match">undetermined</td>
+                  <td>true</td>
+                  <td id="Rule1Result">physician discretion</td>
+                </tr>
+                <tr>
+                  <th scope="row">2</th>
+                  <td>Diagnosed with T2DM at least 6 months prior</td>
+                  <td>true</td>
+                  <td>true</td>
+                  <td>pass</td>
+                </tr>
+                <tr>
+                  <th scope="row">3</th>
+                  <td>Under the active care of a doctor for at least the six months prior</td>
+                  <td>undetermined</td>
+                  <td>true</td>
+                  <td style="color:red">judgement</td>
+                </tr>
+                <tr>
+                  <th scope="row">4</th>
+                  <td>HbA1c ≥ 8.0 %</td>
+                  <td>true</td>
+                  <td>true</td>
+                  <td>pass</td>
+                </tr>
+                <tr>
+                  <th scope="row">5</th>
+                  <td>Body Mass Index (BMI) ≥ 30.0 kg/m2 and ≤ 39.9 kg/m2</td>
+                  <td>true</td>
+                  <td>true</td>
+                  <td>pass</td>
+                </tr>
+                <tr>
+                  <th scope="row">6</th>
+                  <td>Cardiovascular event (myocardial infarction, acute coronary syndrome, coronary artery angioplasty or bypass, stroke) in the past six months.</td>
+                  <td>false</td>
+                  <td>false</td>
+                  <td>pass</td>
+                </tr>
+                <tr>
+                  <th scope="row">7</th>
+                  <td>Current evidence of congestive heart failure, angina pectoris, or symptomatic peripheral vascular disease.</td>
+                  <td>false</td>
+                  <td>false</td>
+                  <td>pass</td>
+                </tr>
+                <tr>
+                  <th scope="row">8</th>
+                  <td>Cardiac stress test indicating that surgery or IMM would not be safe</td>
+                  <td>undetermined</td>
+                  <td>false</td>
+                  <td style="color:red">judgement</td>
+                </tr>
+                <tr>
+                  <th scope="row">9</th>
+                  <td>Pulmonary embolus or thrombophlebitis in the past six months.</td>
+                  <td>false</td>
+                  <td>false</td>
+                  <td>pass</td>
+                </tr>
+                <tr>
+                  <th scope="row">10</th>
+                  <td>Cancer of any kind (except basal cell skin cancer or cancer in situ) unless documented to be disease-free for five years.</td>
+                  <td>undetermined</td>
+                  <td>false</td>
+                  <td style="color:red">judgement</td>
+                </tr>
+                
+                <tr>
+                  <th scope="row">11</th>
+                  <td>Significant anemia (hemoglobin 1.0 g or more below normal range) or history of coagulopathy.</td>
+                  <td>false</td>
+                  <td>false</td>
+                  <td>pass</td>
+                </tr>
+                <tr>
+                  <th scope="row">12</th>
+                  <td>Serum creatinine ≥ 1.5 mg/dl.</td>
+                  <td>false</td>
+                  <td>false</td>
+                  <td>pass</td>
+                </tr>
+                <!--
+                <tr>
+                  <th scope="row">13</th>
+                  <td>HbA1c > 14.0%.</td>
+                  <td>false</td>
+                  <td>false</td>
+                  <td>pass</td>
+                </tr>
+                -->
+              </tbody>
+            </table>
+          </div>
+          
+          <div id="knowledge" class="container tab-pane fade"><br>
+            <h5>Research Study Information</h5>
+            <table class="table table-sm table-bordered text-start text-secondary eunochains-table">
+              <thead  class="eunochains-table__header font-weight-normal">
+                <th scope="col">Subject</th>
+                <th scope="col">Detail</th>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">Importance</th>
+                  <td>The Roux-en-Y gastric bypass is effective in achieving established diabetes treatment targets, but durability is unknown.</td>
+                </tr>
+                <tr>
+                  <th scope="row">Objective</th>
+                  <td>To compare durability of Roux-en-Y gastric bypass added to intensive lifestyle and medical management in achieving diabetes control targets.</td>
+                </tr>
+                <tr>
+                  <th scope="row">Design, Setting, and Participants</th>
+                  <td>Observational follow-up of a randomized clinical trial at 4 sites in the United States and Taiwan, involving 120 participants who had a hemoglobin A1c (HbA1c) level of 8.0% or higher and a body mass index between 30.0 and 39.9 (enrolled between April 2008 and December 2011) were followed up for 5 years, ending in November 2016.</td>
+                </tr>
+                <tr>
+                  <th scope="row">Interventions</th>
+                  <td>Lifestyle-intensive medical management intervention based on the Diabetes Prevention Program and LookAHEAD trials for 2 years, with and without (60 participants each) Roux-en-Y gastric bypass surgery followed by observation to year 5.</td>
+                </tr>
+                <tr>
+                  <th scope="row">Outcomes & Measures</th>
+                  <td>The American Diabetes Association composite triple end point of hemoglobin A1c less than 7.0%, low-density lipoprotein cholesterol less than 100 mg/dL, and systolic blood pressure less than 130 mm Hg at 5 years.</td>
+                </tr>
+                <tr>
+                  <th scope="row">Results</th>
+                  <td>Of 120 participants who were initially randomized (mean age, 49 years [SD, 8 years], 72 women [60%]), 98 (82%) completed 5 years of follow-up. Baseline characteristics were similar between groups: mean (SD) body mass index 34.4 (3.2) for the lifestyle–medical management group and 34.9 (3.0) for the gastric bypass group and had hemoglobin A1c levels of 9.6% (1.2) and 9.6% (1.0), respectively. At 5 years, 13 participants (23%) in the gastric bypass group and 2 (4%) in the lifestyle-intensive medical management group had achieved the composite triple end point (difference, 19%; 95% CI, 4%-34%; P = .01). In the fifth year, 31 patients (55%) in the gastric bypass group vs 8 (14%) in the lifestyle–medical management group achieved an HbA1c level of less than 7.0% (difference, 41%; 95% CI, 19%-63%; P = .002). Gastric bypass had more serious adverse events than did the lifestyle–medical management intervention, 66 events vs 38 events, most frequently gastrointestinal events and surgical complications such as strictures, small bowel obstructions, and leaks. Gastric bypass had more parathyroid hormone elevation but no difference in B12 deficiency.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div id="source" class="container tab-pane fade"><br>
+            <h5>Research Study Source</h5>
+            <p>link or embed ???</p>
+          </div>
+          <div id="developer" class="container tab-pane fade"><br>
+            <h5>Developer Console</h5>
+            <p id="ConsolePrint" class="text-start">Developer Console:<br/>Application Started</p>
+          </div>
+        </div>
+      </div> <!-- End Content -->
+      <div id="Footer" class="eunochains-footer row">
+        <div class="col-sm-8">
+          <p id="StatusPrint" style="color:yellow;">Loading Application in Browser ...</p>
+        </div>
+        <div class="col-sm-4 text-end">
+          <small>Copyright @EunoChains 2023</small>
+        </div>
+        
+      </div>
     </div>
   </body>
+  
+  
   <script id="Framework">
-    function Console(msg) {
-      let element = document.getElementById("Console");
+    function ConsolePrint(msg) {
+      let element = document.getElementById("ConsolePrint");
+      if(!element || element instanceof HTMLUnknownElement) { console.log("Error ConsolePrint: element by Id ConsolePrint not found"); return; }
       let str = element.innerHTML;
       str = str + '<br/>';
       str = str + msg;
       element.innerHTML = str;
     }
+    function StatusPrint(msg) {
+      let element = document.getElementById("StatusPrint");
+      if(!element || element instanceof HTMLUnknownElement) { console.log("Error StatusPrint: StatusPrint not found"); return; }
+      element.innerHTML = msg;
+    }
+    
   </script>
   
   <script>
-    Console("Loading Application In Browser...");
+    
     document.addEventListener("DOMContentLoaded", SetupFhirConnection, false );
     
     let EunoChains = {};
@@ -54,19 +416,21 @@
       event.preventDefault();
       event.stopPropagation();
       document.removeEventListener("DOMContentLoaded", SetupFhirConnection, false );
-      Console("Setting Up FHIR Connection....");
+      ConsolePrint("Setting Up FHIR Connection....");
+      StatusPrint("Setting Up FHIR Connection....");
       FHIR.oauth2.ready() 
       .then((client) => {
         EunoChains.fhir.client = client;
         console.log("SetupFhirConnection Successful", JSON.stringify(client.patient));
-        Console("SetupFhirConnection Successful... EHR Connection Context is ...");
-        Console(JSON.stringify(client.patient));
-        
+        ConsolePrint("SetupFhirConnection Successful... EHR Connection Context is ...");
+        ConsolePrint(JSON.stringify(client.patient));
+        StatusPrint("SetupFhirConnection is Successful...");
         document.dispatchEvent(fhirConnectionEvent);
       })
       .catch((err) => {
         console.error("Error: SetupFhirConnection", err);
-        Console("Error: SetupFhirConnection");
+        ConsolePrint("SetupFhirConnection is NOT Successful...");
+        StatusPrint("SetupFhirConnection is NOT Successful...");
       });
     }
     function FetchFhirPatient(event) {
@@ -74,47 +438,63 @@
       event.stopPropagation();
       document.removeEventListener("fhirConnection", FetchFhirPatient, false );
       //EunoChains.fhir.client.request(`Patient?_id=${EunoChains.fhir.client.patient.id}`)
-      Console("Getting Patient FHIR Data....");
-      
+      ConsolePrint("Fetching Patient FHIR Data....");
+      StatusPrint("Fetching Patient FHIR Data....");
       EunoChains.fhir.client.patient.read()
       .then((data) => {
         EunoChains.fhir.Patient.push(data);
         console.log("FetchFhirPatient Successful", JSON.stringify(data));
-        Console("FetchFhirPatient Successful... Patient Data is ...");
-        Console(JSON.stringify(data));
+        ConsolePrint("FetchFhirPatient is Successful... Patient Data is ...");
+        ConsolePrint(JSON.stringify(data));
+        StatusPrint("FetchFhirPatient is Successful...");
         document.dispatchEvent(fhirPatientEvent);
       })
       .catch((err) => {
         console.error("Error: FetchFhirPatient");
-        Console("Error: FetchFhirPatient");
+        ConsolePrint("FetchFhirPatient is NOT Successful...");
+        StatusPrint("FetchFhirPatient is NOT Successful...");
       });
     }
     function FetchFhirCondition(event) {
       event.preventDefault();
       event.stopPropagation();
       document.removeEventListener("fhirPatient", FetchFhirCondition, false );
+      ConsolePrint("Fetching Patient Condition Data....");
+      StatusPrint("Fetching Patient Condition Data....");
       EunoChains.fhir.client.request(`Condition?patient=${EunoChains.fhir.client.patient.id}`)
       .then((data) => {
         EunoChains.fhir.Condition.push(data);
         console.log("FetchFhirCondition Successful", JSON.stringify(data));
+        ConsolePrint("FetchFhirCondition is Successful... Patient Data is ...");
+        ConsolePrint(JSON.stringify(data));
+        StatusPrint("FetchFhirCondition is Successful...");
         document.dispatchEvent(fhirConditionEvent);
       })
       .catch((err) => {
         console.error("Error: FetchFhirCondition");
+        ConsolePrint("FetchFhirCondition is NOT Successful...");
+        StatusPrint("FetchFhirCondition is NOT Successful...");
       });
     }
     function FetchFhirObservation(event) {
       event.preventDefault();
       event.stopPropagation();
       document.removeEventListener("fhirCondition", FetchFhirObservation, false );
+      ConsolePrint("Fetching Patient Observation Data....");
+      StatusPrint("Fetching Patient Observation Data....");
       EunoChains.fhir.client.request(`Observation?patient=${EunoChains.fhir.client.patient.id}`)
       .then((data) => {
         EunoChains.fhir.Observation.push(data);
         console.log("FetchFhirObservation Successful", JSON.stringify(data));
+        ConsolePrint("FetchFhirObservation is Successful... Patient Data is ...");
+        ConsolePrint(JSON.stringify(data));
+        StatusPrint("FetchFhirObservation is Successful...");
         document.dispatchEvent(fhirObservationEvent);
       })
       .catch((err) => {
         console.error("Error: FetchFhirObservation");
+        ConsolePrint("FetchFhirObservation is NOT Successful...");
+        StatusPrint("FetchFhirObservation is NOT Successful...");
       });
     }
     
@@ -122,8 +502,10 @@
       event.preventDefault();
       event.stopPropagation();
       document.removeEventListener("fhirObservation", StartApplication, false );
-      console.log("StartApplication Successful");
-      
+      console.log("Starting Application...");
+      ConsolePrint("Starting Application...");
+      StatusPrint("Starting Application...");
+      //PICKUP
       return;
     }
     
