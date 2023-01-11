@@ -215,9 +215,9 @@
                 <tr>
                   <th scope="row">1</th>
                   <td>Age 30 to 67 years at eligibility visit</td>
-                  <td id="Rule1Match">undetermined</td>
+                  <td id="Rule1Match">false</td>
                   <td>true</td>
-                  <td id="Rule1Result">physician discretion</td>
+                  <td id="Rule1Result">fail</td>
                 </tr>
                 <tr>
                   <th scope="row">2</th>
@@ -382,7 +382,35 @@
       if(!element || element instanceof HTMLUnknownElement) { console.log("Error StatusPrint: StatusPrint not found"); return; }
       element.innerHTML = msg;
     }
-    
+    function Age(dob){
+      if(!dob || typeof dob !== 'string') { return 0; }
+      let adate = new Date(dob);
+      let today = new Date();
+      let temp = (today.getFullYear() - adate.getFullYear())*12;
+      let ageinmonths = (temp + (today.getMonth() - adate.getMonth()));
+      return Math.floor(ageinmonths/12);
+    }
+    function Rule1() {
+      let dob = EunoChains.patient.birthDate;
+      let age = Age(dob);
+      if(age >= 30 && age <= 67) { return true; }
+      else { return false; }
+    }
+    function SetCDSStatement(str) {
+      let element = document.getElementById("CDSStatement");
+      if(!element || element instanceof HTMLUnknownElement) { console.log("Error SetCDSStatement: element id CDSStatement not found"); return; }
+      element.innerHTML = str;
+    }
+    function SetRule1Match(str) {
+      let element = document.getElementById("Rule1Match");
+      if(!element || element instanceof HTMLUnknownElement) { console.log("Error SetRule1Match: element id Rule1Match not found"); return; }
+      element.innerHTML = str;
+    }
+    function SetRule1Result(str) {
+      let element = document.getElementById("Rule1Result");
+      if(!element || element instanceof HTMLUnknownElement) { console.log("Error SetRule1Result: element id Rule1Result not found"); return; }
+      element.innerHTML = str;
+    }
   </script>
   
   <script>
@@ -391,16 +419,18 @@
     
     let EunoChains = {};
     EunoChains.fhir = {};
-    EunoChains.fhir.client = undefined;
-    EunoChains.fhir.Patient = [];
-    EunoChains.fhir.Condition = [];
-    EunoChains.fhir.Observation = [];
+    EunoChains.fhir.client        = undefined;
+    EunoChains.fhir.Patient       = [];
+    EunoChains.fhir.Condition     = [];
+    EunoChains.fhir.Observation   = [];
     EunoChains.fhir.AllergyIntolerance = [];
-    EunoChains.fhir.Procedure = [];
+    EunoChains.fhir.Procedure     = [];
     EunoChains.fhir.MedicationStatement = [];
-    EunoChains.ec = {};
-    EunoChains.ec.results = [];
-    EunoChains.artifact = {};
+    EunoChains.patient.name       = undefined;
+    EunoChains.patient.id         = undefined;
+    EunoChains.patient.birthDate  = undefined;
+    
+    
     
     
     let fhirConnectionEvent    = new Event("fhirConnection");
@@ -447,6 +477,10 @@
         ConsolePrint("FetchFhirPatient is Successful... Patient Data is ...");
         ConsolePrint(JSON.stringify(data));
         StatusPrint("FetchFhirPatient is Successful...");
+        if(!!data && !!data.name) { EunoChains.patient.name = data.name; }
+        if(!!data && !!data.id) { EunoChains.patient.id = data.id; }
+        if(!!data && !!data.birthDate) { EunoChains.patient.birthDate = data.birthDate; }
+        
         document.dispatchEvent(fhirPatientEvent);
       })
       .catch((err) => {
@@ -505,7 +539,27 @@
       console.log("Starting Application...");
       ConsolePrint("Starting Application...");
       StatusPrint("Starting Application...");
-      //PICKUP
+      
+      let name = "";
+      
+      
+      if(!!EunoChains.patient.name && Array.isArray(EunoChains.patient.name) && EunoChains.patient.name.length >= 1) {
+        name = EunoChains.patient.name[0].given.join(' ') + ' ' + EunoChains.patient.name[0].family;
+      } else {
+        name = "NoName";
+      }
+      let match = "false";
+      let result = "fail";
+      let statement = name + " DOES NOT MATCH the Criteria for Bariatric Surgery";;
+      if(Rule1()) {
+        match = "true";
+        result = "pass";
+        statement = name + " MATCHES the Criteria for Bariatric Surgery";
+      } 
+      SetCDSStatement(statement);
+      SetRule1Match(match);
+      SetRule1Result(result);
+      StatusPrint("Application Started and Running...");
       return;
     }
     
