@@ -10,8 +10,21 @@
       
   </head>
   <body id="Body">
+    <div id="Console">
+    </div>
   </body>
+  <script id="Framework">
+    function Console(msg) {
+      let element = document.getElementById("Console");
+      let str = element.innerHTML;
+      str = str + '<br/>';
+      str = str + msg;
+      element.innerHTML = str;
+    }
+  </script>
+  
   <script>
+    Console("Loading Application In Browser...");
     document.addEventListener("DOMContentLoaded", SetupFhirConnection, false );
     
     let EunoChains = {};
@@ -41,14 +54,19 @@
       event.preventDefault();
       event.stopPropagation();
       document.removeEventListener("DOMContentLoaded", SetupFhirConnection, false );
+      Console("Setting Up FHIR Connection....");
       FHIR.oauth2.ready() 
       .then((client) => {
         EunoChains.fhir.client = client;
         console.log("SetupFhirConnection Successful", JSON.stringify(client.patient));
+        Console("SetupFhirConnection Successful... EHR Connection Context is ...");
+        Console(JSON.stringify(client.patient));
+        
         document.dispatchEvent(fhirConnectionEvent);
       })
       .catch((err) => {
         console.error("Error: SetupFhirConnection", err);
+        Console("Error: SetupFhirConnection");
       });
     }
     function FetchFhirPatient(event) {
@@ -56,14 +74,19 @@
       event.stopPropagation();
       document.removeEventListener("fhirConnection", FetchFhirPatient, false );
       //EunoChains.fhir.client.request(`Patient?_id=${EunoChains.fhir.client.patient.id}`)
+      Console("Getting Patient FHIR Data....");
+      
       EunoChains.fhir.client.patient.read()
       .then((data) => {
         EunoChains.fhir.Patient.push(data);
         console.log("FetchFhirPatient Successful", JSON.stringify(data));
+        Console("FetchFhirPatient Successful... Patient Data is ...");
+        Console(JSON.stringify(data));
         document.dispatchEvent(fhirPatientEvent);
       })
       .catch((err) => {
         console.error("Error: FetchFhirPatient");
+        Console("Error: FetchFhirPatient");
       });
     }
     function FetchFhirCondition(event) {
