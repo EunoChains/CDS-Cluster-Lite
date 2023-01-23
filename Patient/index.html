@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>CDS-Cluster-Lite (Patient)</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com"> 
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> 
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500&display=swap" rel="stylesheet">
+  
+  <style>
+    html {
+      height: 100%;
+      width: 100%;
+    }
+    html body {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 12px;
+    }
+    ec-header {
+      min-height: 60px;
+      width: 100%;
+    }
+    ec-navigation {
+      min-height: 42px;
+      width: 100%;
+    }
+    ec-content {
+      min-height: calc(100% - 132px);
+      width: 100%;
+      overflow-y: auto;
+    }
+    ec-footer {
+      min-height: 30px;
+      width: 100%;
+    }
+    .ec-evaluations-table-header {
+        background-color: maroon;
+        color: white;
+    }
+  </style>
+</head>
+<body> 
+
+<ec-header class="d-flex bg-dark text-info align-items-center justify-content-left p-3">
+  <h4>Federated CDS Collaborative</h4>
+</ec-header>
+<ec-navigation class="bg-light" >
+	<nav>
+  <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
+    <button class="nav-link text-warning" id="nav-governance-tab" data-bs-toggle="tab" data-bs-target="#Nav-Governance" type="button" role="tab" aria-controls="nav-governance" aria-selected="false">Governance</button>
+    <button class="nav-link active" id="nav-evaluations-tab" data-bs-toggle="tab" data-bs-target="#Nav-Evaluations" type="button" role="tab" aria-controls="nav-evaluations" aria-selected="true">CDS Evaluations</button>
+    <button class="nav-link" id="nav-recommendations-tab" data-bs-toggle="tab" data-bs-target="#Nav-Recommendations" type="button" role="tab" aria-controls="nav-recommendations" aria-selected="false">CDS Recommendations</button>
+    <button class="nav-link" id="nav-decision-aids-tab" data-bs-toggle="tab" data-bs-target="#Nav-Decision-Aids" type="button" role="tab" aria-controls="nav-decision-aids" aria-selected="false">CR Aids - Patient</button>
+    <button class="nav-link" id="nav-actions-tab" data-bs-toggle="tab" data-bs-target="#Nav-Actions" type="button" role="tab" aria-controls="nav-actions" aria-selected="false">Actions - Patient</button>
+    <button class="nav-link text-warning" id="nav-workflows-tab" data-bs-toggle="tab" data-bs-target="#Nav-Workflows" type="button" role="tab" aria-controls="nav-workflows" aria-selected="false">Workflows</button>
+    <button class="nav-link text-warning" id="nav-collaborative-tab" data-bs-toggle="tab" data-bs-target="#Nav-Collaborative" type="button" role="tab" aria-controls="nav-collaborative" aria-selected="false">Collaborative</button>
+    <button class="nav-link text-warning" id="nav-administration-tab" data-bs-toggle="tab" data-bs-target="#Nav-Administration" type="button" role="tab" aria-controls="nav-administration" aria-selected="false">Administration</button>
+  </div>
+</nav>
+</ec-navigation>
+<ec-content class="bg-dark">
+  <div class="tab-content" id="nav-tabContent">
+    <!-- Start tab-pane id="Nav-Governance" -->
+    <div class="tab-pane fade" id="Nav-Governance" role="tabpanel" aria-labelledby="nav-governance-tab" tabindex="0">     
+        <div class="bg-warning  text-center m-5 p-5">
+          <bold>Care Collaborative Federation Business Processes</bold><br/><br/>
+          ... Federated CDS Collaborative Governance Policies ... <br/><br/>
+          - Evidence based Care Gap Reports <br/>
+          - Evidence based Care Quality Objectives <br/>
+          - Co-management Policies, Procedures and Operations Definitions <br/><br/>
+          ... Burn them on the EunoChains' Blockchains/ FHIR enabled "Electronic Business Infrastructures" for Digital Automation  ...<br/>
+        </div>    
+    </div> <!-- End tab-pane id="Nav-Governance" -->
+    <!-- Start tab-pane id="Nav-Evaluations" -->
+    <div class="tab-pane fade show active p-5" id="Nav-Evaluations" role="tabpanel" aria-labelledby="nav-evaluations-tab" tabindex="0">
+      <div class="bg-transparent text-light m-1 p-1">
+        <h5>Patient Health Characteristic Evaluations for CDS Recommendations</h5>
+      </div>
+      <div id="Criterion-1" class="bg-light m-1 p-1"> <!-- Start Criterion-1 -->
+        <h6>Clinical Trial NCT00641251 Population Criterion</h6>
+        <table class="table table-sm table-bordered text-start text-secondary">
+          <thead class="ec-evaluations-table-header fw-normal">
+            <tr> <!-- Start tr -->
+              <th class="fw-normal" scope="col">Description of Health Characteristics (Inclusions)</th>
+              <th class="fw-normal" scope="col">Processor</th>
+              <th class="fw-normal" scope="col">Result</th>
+              <th class="fw-normal" scope="col">Patient Discretion</th>
+            </tr> <!-- End tr -->
+          </thead>
+          <tbody >
+            <tr id="inclusion-1"> <!-- Start tr -->
+              <td>Age 30 to 67 years at eligibility visit</td>
+              <td>default</td>
+              <td>pass</td>
+              <td>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="" id="inclusion-1-override" checked>
+                  <label class="form-check-label" for="inclusion-1-override">
+                    Override
+                  </label>
+                </div>
+              </td>
+            </tr> <!-- End tr -->
+            <tr id="inclusion-2"> <!-- Start tr -->
+              <td>Diagnosed with T2DM at least 6 months prior</td>
+              <td>default</td>
+              <td>pass</td>
+              <td>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="" id="inclusion-2-override" checked>
+                  <label class="form-check-label" for="inclusion-2-override">
+                    Override
+                  </label>
+                </div>
+              </td>
+            </tr> <!-- End tr -->
+            <tr id="inclusion-3"> <!-- Start tr -->
+              <td>Body Mass Index (BMI) ≥ 30.0 kg/m2 and ≤ 39.9 kg/m2</td>
+              <td>default</td>
+              <td>pass</td>
+              <td>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="" id="inclusion-3-override" checked>
+                  <label class="form-check-label" for="inclusion-3-override">
+                    Override
+                  </label>
+                </div>
+              </td>
+            </tr> <!-- End tr -->
+            <tr id="inclusion-4"> <!-- Start tr -->
+              <td>HbA1c ≥ 8.0 %</td>
+              <td>default</td>
+              <td>pass</td>
+              <td>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="" id="inclusion-4-override" checked>
+                  <label class="form-check-label" for="inclusion-4-override">
+                    Override
+                  </label>
+                </div>
+              </td>
+            </tr> <!-- End tr -->
+            <tr id="inclusion-5"> <!-- Start tr -->
+              <td>Under the active care of a doctor for at least the six months prior</td>
+              <td>default</td>
+              <td  class="text-danger">pass-fuzzy</td>
+              <td>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="" id="inclusion-5-override" checked>
+                  <label class="form-check-label" for="inclusion-5-override">
+                    Override
+                  </label>
+                </div>
+              </td>
+            </tr> <!-- End tr -->
+          </tbody>
+          <thead class="ec-evaluations-table-header fw-normal">
+            <tr>
+              <th class="fw-normal" scope="col">Description of Health Characteristics (Exclusions)</th>
+              <th class="fw-normal" scope="col">Processor</th>
+              <th class="fw-normal" scope="col">Result</th>
+              <th class="fw-normal" scope="col">Patient Discretion</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr id="exclusion-1"> <!-- Start tr -->
+              <td>Cardiovascular event (myocardial infarction, acute coronary syndrome, coronary artery angioplasty or bypass, stroke) in the past six months.</td>
+              <td>default</td>
+              <td>fail</td>
+              <td>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="" id="exclusion-1-override">
+                  <label class="form-check-label" for="exclusion-1-override">
+                    Override
+                  </label>
+                </div>
+              </td>
+            </tr> <!-- End tr -->
+            <tr id="exclusion-2"> <!-- Start tr -->
+              <td>Current evidence of congestive heart failure, angina pectoris, or symptomatic peripheral vascular disease.</td>
+              <td>default</td>
+              <td>fail</td>
+              <td>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="" id="exclusion-2-override">
+                  <label class="form-check-label" for="exclusion-2-override">
+                    Override
+                  </label>
+                </div>
+              </td>
+            </tr> <!-- End tr -->
+            <tr id="exclusion-3"> <!-- Start tr -->
+              <td>Cardiac stress test indicating that surgery or IMM would not be safe.</td>
+              <td>default</td>
+              <td>fail</td>
+              <td>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="" id="exclusion-3-override">
+                  <label class="form-check-label" for="exclusion-3-override">
+                    Override
+                  </label>
+                </div>
+              </td>
+            </tr> <!-- End tr -->
+            <tr id="exclusion-4"> <!-- Start tr -->
+              <td>Pulmonary embolus or thrombophlebitis in the past six months.</td>
+              <td>default</td>
+              <td>fail</td>
+              <td>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="" id="exclusion-4-override">
+                  <label class="form-check-label" for="exclusion-4-override">
+                    Override
+                  </label>
+                </div>
+              </td>
+            </tr> <!-- End tr -->
+            <tr id="exclusion-5"> <!-- Start tr -->
+              <td>Significant anemia (hemoglobin 1.0 g or more below normal range) or history of coagulopathy.</td>
+              <td>default</td>
+              <td>fail</td>
+              <td>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="" id="exclusion-5-override">
+                  <label class="form-check-label" for="exclusion-5-override">
+                    Override
+                  </label>
+                </div>
+              </td>
+            </tr> <!-- End tr -->
+            <tr id="exclusion-6"> <!-- Start tr -->
+              <td>Serum creatinine ≥ 1.5 mg/dl.</td>
+              <td>default</td>
+              <td class="text-danger">fail-fuzzy</td>
+              <td>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="" id="exclusion-6-override">
+                  <label class="form-check-label" for="exclusion-6-override">
+                    Override
+                  </label>
+                </div>
+              </td>
+            </tr> <!-- End tr -->
+            <tr id="exclusion-7"> <!-- Start tr -->
+              <td>HbA1c > 14.0%.</td>
+              <td>default</td>
+              <td>fail</td>
+              <td>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="" id="exclusion-7-override">
+                  <label class="form-check-label" for="exclusion-7-override">
+                    Override
+                  </label>
+                </div>
+              </td>
+            </tr> <!-- End tr -->
+            <tr id="exclusion-8"> <!-- Start tr -->
+              <td>Cancer of any kind (except basal cell skin cancer or cancer in situ) unless documented to be disease-free for five years.</td>
+              <td>default</td>
+              <td class="text-danger">fail-fuzzy</td>
+              <td>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="" id="exclusion-8-override">
+                  <label class="form-check-label" for="exclusion-8-override">
+                    Override
+                  </label>
+                </div>
+              </td>
+            </tr> <!-- End tr -->
+          </tbody>
+        </table>
+        <div class="d-flex flex-row justify-content-around bg-dark p-3">
+          <a id="evaluation-update" class="btn btn-primary">
+            Update Evaluation 
+          </a>
+        </div> 
+      </div> <!-- End Criterion-1 -->
+
+<!-- 
+      <div id="Criterion-2" class="bg-light m-3 p-1"> !-- Start Criterion-2 --
+        <h6>Some Population Criterion</h6>
+        <table class="table table-sm table-bordered text-start text-secondary">
+          <thead class="ec-evaluations-table-header fw-normal">
+            <tr> !-- Start tr --
+              <th class="fw-normal" scope="col">Description of Health Characteristics (Inclusions)</th>
+              <th class="fw-normal" scope="col">Library</th>
+              <th class="fw-normal" scope="col">Test</th>
+              <th class="fw-normal" scope="col">Clinician Discretion</th>
+            </tr> !-- End tr --
+          </thead>
+          <tbody >
+            <tr id="inclusion-1"> !-- Start tr --
+              <td>characteristic description</td>
+              <td>name of library processor</td>
+              <td>processed test result</td>
+              <td>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="" id="inclusion-1-override" checked>
+                  <label class="form-check-label" for="inclusion-1-override">
+                    Override
+                  </label>
+                </div>
+              </td>
+            </tr> !-- End tr --
+          </tbody>
+          <thead class="ec-evaluations-table-header fw-normal">
+            <tr>
+              <th class="fw-normal" scope="col">Description of Health Characteristics (Exclusions)</th>
+              <th class="fw-normal" scope="col">Library</th>
+              <th class="fw-normal" scope="col">Test</th>
+              <th class="fw-normal" scope="col">Clinician Discretion</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr id="exclusion-1"> !-- Start tr --
+              <td>characteristic description</td>
+              <td>name of library processor</td>
+              <td>processed test result</td>
+              <td>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="" id="exclusion-1-override">
+                  <label class="form-check-label" for="exclusion-1-override">
+                    Override
+                  </label>
+                </div>
+              </td>
+            </tr> !-- End tr --
+            
+          </tbody>
+        </table>
+      </div> !-- End Criterion-2 --
+    -->
+    </div> <!-- End tab-pane id="Nav-Evaluations" -->
+    <!-- Start tab-pane id="Nav-Recommendations" -->
+    <div class="tab-pane fade m-3 p-3" id="Nav-Recommendations" role="tabpanel" aria-labelledby="nav-recommendations-tab" tabindex="0">
+    
+      <div id="card-1" class="card m-4 p-1"> <!-- Start card -->
+        <h6 class="text-danger card-header">
+          Treatment Objective: <span style="color:black;">Achieve the American Diabetes Association composite triple end point of hemoglobin A1c less than 7.0%, low-density lipoprotein cholesterol less than 100 mg/dL, and systolic blood pressure less than 130 mm Hg at 5 years.</span>
+          <br/><br/>
+          Recommendation: <span style="color:black;">Bariatric Surgery along with Lifestyle-intensive Medical Management</span>
+          <!-- 
+          <span id="Card-Header-Subject-Name">(Subject)</span> has matched the NCT00641251 Criterion and should be given a Bariactric Surgery Referral
+          -->
+        </h6>
+        <div class="card-body">
+          <p class="card-title">
+            Knowledge Source for the Recommendation: &nbsp;&nbsp; Randomized Clinical Trials id number NCT00641251
+          <p>
+          <p class="card-text" style="font-size:14px;">
+            Clinical Trial Research Study shows that this patient when treated with Roux-en-Y gastric bypass, along with "Intensive Lifestyle and Medical Management", will have 19% better chance to achieve ADA "triple end point" of A1c less than 7.0%, low-density lipoprotein cholesterol less than 100 mg/dL, and systolic blood pressure less than 130 mm Hg at 5 years.
+          </p>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th scope="col">Objectives</th>
+                <th scope="col">Design</th>
+                <th scope="col">Results</th>
+                <th scope="col">Adverse Effects</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td style="font-size: 12px;">To compare durability of Roux-en-Y gastric bypass added to intensive lifestyle and medical management in achieving diabetes control targets.</td>
+                <td style="font-size: 12px;">Observational follow-up of a randomized clinical trial at 4 sites in the United States and Taiwan, involving 120 participants who had a hemoglobin A1c (HbA1c) level of 8.0% or higher and a body mass index between 30.0 and 39.9 (enrolled between April 2008 and December 2011) were followed up for 5 years, ending in November 2016.</td>
+                <td style="font-size: 12px;">Of 120 participants who were initially randomized (mean age, 49 years [SD, 8 years], 72 women [60%]), 98 (82%) completed 5 years of follow-up. Baseline characteristics were similar between groups: mean (SD) body mass index 34.4 (3.2) for the lifestyle–medical management group and 34.9 (3.0) for the gastric bypass group and had hemoglobin A1c levels of 9.6% (1.2) and 9.6% (1.0), respectively. At 5 years, 13 participants (23%) in the gastric bypass group and 2 (4%) in the lifestyle-intensive medical management group had achieved the composite triple end point (difference, 19%; 95% CI, 4%-34%; P = .01). In the fifth year, 31 patients (55%) in the gastric bypass group vs 8 (14%) in the lifestyle–medical management group achieved an HbA1c level of less than 7.0% (difference, 41%; 95% CI, 19%-63%; P = .002).</td>
+                <td style="font-size: 12px;">Gastric bypass had more serious adverse events than did the lifestyle–medical management intervention, 66 events vs 38 events, most frequently gastrointestinal events and surgical complications such as strictures, small bowel obstructions, and leaks. Gastric bypass had more parathyroid hormone elevation but no difference in B12 deficiency.</td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="d-flex flex-row justify-content-around">
+            <a id="download-card-1" class="btn btn-primary" target="_blank" download="source.html">
+              Download Publication
+            </a>
+            <a href="#" class="btn btn-success">
+              Accept Recommendation
+            </a>
+            <a href="#" class="btn btn-danger">
+              Reject Recommendation
+            </a>
+          </div> 
+        </div> <!-- End card-body -->
+      </div> <!-- End card -->
+<!-- 
+      <div class="card m-4 p-1"> !-- Start card --
+        <h5 class="text-danger card-header">
+          Recommendation Statement
+        </h5>
+        <div class="card-body">
+          <h5 class="card-title">
+            Summary Title
+          </h5>
+          <p class="card-text">
+            Summary Text
+          </p>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th scope="col">Design, Setting, and Participants</th>
+                <th scope="col">Outcomes and Measures</th>
+                <th scope="col">Results</th>
+                <th scope="col">Adverse Effects</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Information...</td>
+                <td>Information...</td>
+                <td>Information...</td>
+                <td>Information...</td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="d-flex flex-row justify-content-around">
+            <a href="#" class="btn btn-primary">
+              Review Publication
+            </a>
+            <a href="#" class="btn btn-success">
+              Accept Card
+            </a>
+            <a href="#" class="btn btn-danger">
+              Reject Card
+            </a>
+          </div>        
+        </div> !-- End card-body --
+      </div> !-- End card --
+-->
+
+      
+
+    </div> <!-- End tab-pane id="Nav-Recommendations" -->
+    <!-- Start tab-pane id="Nav-Decision-Aids" -->
+    <div class="tab-pane fade" id="Nav-Decision-Aids" role="tabpanel" aria-labelledby="nav-decision-aids-tab" tabindex="0">
+      <div class="bg-transparent text-light text-center m-3 p-3">
+        <h5 class="text-white">Patient facing tools to support Clinical Reasoning</h5>
+        <br/>
+        <div class="d-flex flex-row justify-content-around bg-dark p-1">
+          <a id="patient-education-button" class="btn btn-primary btn-md" onclick="ShowPatientEducation(event)">
+            Patient Education
+          </a>
+          <a id="research-tool-two" class="btn btn-outline-secondary btn-md">
+            Support Tool Two
+          </a>
+          <a id="research-tool-three" class="btn btn-outline-secondary btn-md">
+            Support Tool Three
+          </a>
+          <a id="research-tool-four" class="btn btn-outline-secondary btn-md">
+            Support Tool Four
+          </a>
+          <a id="research-tool-five" class="btn btn-outline-secondary btn-md">
+            Support Tool five
+          </a>
+        </div> 
+      </div>
+      <div id="patient-education-display" class="bg-light m-5 p-3">
+        <iframe width="420" height="345" src="https://www.youtube.com/embed/h9n3Vo9uXNA">
+        </iframe>
+      </div> <!-- !-- End patient-education-display ---->
+    </div> <!-- End tab-pane id="Nav-Decision-Aids" -->
+
+    <div class="tab-pane fade" id="Nav-Actions" role="tabpanel" aria-labelledby="nav-actions-tab" tabindex="0">
+      <div class="bg-transparent m-5 p-5 d-flex flex-column justify-content-around align-items-center">
+        <h5 class="text-white">Patient Actions</h5>
+        <br/>
+        <button class="btn btn-primary btn-md m-5">Generate Physician Appointment</button>
+        <button class="btn btn-danger  btn-md m-5">No Patient Action !!</button>
+      </div>
+    </div> <!-- End tab-pane id="Nav-Actions" -->
+
+    <div class="tab-pane fade" id="Nav-Workflows" role="tabpanel" aria-labelledby="nav-workflows-tab" tabindex="0">
+      <div class="bg-warning text-center m-5 p-5">
+        <bold>Care Collaborative Federation Business Processes</bold><br/><br/>
+        ... Case Management Toolchains ...
+      </div>
+    </div> <!-- End tab-pane id="Nav-Workflows" -->
+    <div class="tab-pane fade" id="Nav-Collaborative" role="tabpanel" aria-labelledby="nav-collaborative-tab" tabindex="0">
+      <div class="bg-warning text-center m-5 p-5">
+        <bold>Care Collaborative Federation Business Processes</bold><br/><br/>
+        ... Protocols for Care Collaborative ...
+      </div>
+    </div>
+    <div class="tab-pane fade" id="Nav-Administration" role="tabpanel" aria-labelledby="nav-administration-tab" tabindex="0">
+      <div class="bg-warning text-center m-5 p-5">
+        <bold>Care Collaborative Federation Business Processes</bold><br/><br/>
+        ... Co-Management & Administration ...
+      </div>
+    </div> <!-- End tab-pane id="Nav-Administration" -->
+     
+  </div>
+</ec-content>
+<ec-footer  class="bg-dark text-white text-start fs-6 px-3">
+  Copyright EunoChains @2023
+</ec-footer>
+
+
+</body>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", StartApplication, false );
+
+function StartApplication(event) {
+  event.preventDefault();
+  event.stopPropagation();
+  document.removeEventListener("DOMContentLoaded", StartApplication, false );
+  let element = document.getElementById("patient-education-display");
+  element.style.display = "none";
+  CreateFile();
+}
+function CreateFile() {
+  
+  let location = "https://pubmed.ncbi.nlm.nih.gov/29340678/";
+  let data = [];
+  
+  let str = undefined;
+  str = `<!DOCTYPE html>`;
+  data.push(str);
+  str = `<html> <head>`;
+  data.push(str);
+  str = `<meta http-equiv="refresh" content="7; url='${location}'" />`;
+  data.push(str);
+  str = `</head> <body>`;
+  data.push(str);
+  str = `<p>Please wait ... you information page is loading.. it make take a few seconds !!</p>`;
+  data.push(str);
+  str = `<p> Click <a href="${location}">this link</a> if the information page does not load automatically </p>`
+  data.push(str);
+  str = `</body> </html>`;
+  data.push(str);
+  var properties = {type: 'text/html'}; // Specify the file's mime-type.
+  let file = undefined;
+  try {
+    // Specify the filename using the File constructor, but ...
+      file = new File(data, "source.html", properties);
+  } catch (e) {
+    // ... fall back to the Blob constructor if that isn't supported.
+    file = new Blob(data, properties);
+  }
+  let url = URL.createObjectURL(file);
+  document.getElementById('download-card-1').href = url;
+}
+
+function ShowPatientEducation(event) {
+  event.preventDefault();
+  event.stopPropagation();
+  let element = document.getElementById("patient-education-display");
+  let disp = element.style.display;
+  if( disp === "none"){
+    element.style.display = "block";
+  } else {
+    element.style.display = "none";
+  }
+}
+</script>
+
+</html>
+
+
